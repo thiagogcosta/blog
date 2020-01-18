@@ -1,7 +1,13 @@
 <h1>Blog</h1>
 
-{{name}}
+<h2>{{name}}</h2>
 
 {% for item in lista_tecnologias %}
     <li> {{item}}</li>
+{% endfor %}
+
+{% for post in list_posts %}
+    <ol> <p>{{post.title}}</p></ol>
+    <ol> <p>{{post.sub}}</p></ol>
+    <ol> <p>{{post.text}}</p></ol>
 {% endfor %}

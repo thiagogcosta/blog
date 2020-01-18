@@ -3,17 +3,30 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
+class Categorias(models.TextChoices):
+    TECH = 'TC', 'Tecnologia'
+    CR = 'CR', 'Curiosidades'
+    LIT = 'LIT', 'Literatura'
+    SCI = 'SCI', 'Ciências'
+    GR = 'GR', 'Geral'
+    
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
-    sub = models.CharField(max_length=200)
+    sub_title = models.CharField(max_length=200)
     text = models.TextField()
+    categories = models.CharField(
+        max_length=3,
+        choices = Categorias.choices,
+        default = Categorias.GR,
+    )
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
-
+    
     def publish(self):
         self.published_date = timezone.now()
         self.save()
 
     def __str__(self):
         return self.title
+        
