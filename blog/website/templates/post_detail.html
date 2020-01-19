@@ -35,6 +35,12 @@
                             <h4>{{post.sub_title}}</h2>
 						</header>
 						<p>{{post.text}}</p>
+						{% if post.imagem %}
+							<img src="{{post.imagem.url}}" alt ="" width="500px" height="300px"/>
+						{% else %}
+							<a href="{% static 'images/fulls/01.jpg' %}" class="image fit thumb">
+								<img src="{% static 'images/thumbs/01.jpg' %}" alt="" /></a>
+						{% endif%}
 						<ul class="actions">
 							<li><a href="{% url 'home_blog' %}" class="button">Voltar</a></li>
 						</ul>
