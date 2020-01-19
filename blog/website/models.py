@@ -27,6 +27,9 @@ class Post(models.Model):
         self.published_date = timezone.now()
         self.save()
 
+    def get_category_label(self):
+        return self.get_categories_display()
+    
     def __str__(self):
         return self.title
         
